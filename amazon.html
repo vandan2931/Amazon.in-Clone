@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amazon.in - Online Shopping</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="bg-gray-100 min-w-[320px]">
+    <!-- Top Navigation -->
+    <div class="amazon-navbar text-white text-sm">
+        <div class="container mx-auto px-4">
+            <div class="flex items-center justify-between py-2">
+                <div class="flex items-center">
+                    <a href="#" class="mr-4">
+                        <img src="https://www.amazon.in/favicon.ico" alt="Amazon Logo" class="h-8 w-auto">
+                    </a>
+                    <div class="flex items-center mr-4 mobile-hidden">
+                        <i class="fas fa-map-marker-alt mr-1"></i>
+                        <div>
+                            <div class="text-xs text-gray-300">Deliver to</div>
+                            <div class="text-sm font-bold">India</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex-1 max-w-2xl mx-4 nav-search">
+                    <div class="flex">
+                        <div class="nav-search-select px-2 flex items-center">
+                            <span class="text-sm">All</span>
+                            <i class="fas fa-caret-down ml-1 text-gray-600"></i>
+                        </div>
+                        <input type="text" class="nav-search-input" placeholder="Search Amazon.in">
+                        <button class="nav-search-submit">
+                            <i class="fas fa-search text-gray-800"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="flex items-center">
+                    <div class="nav-tooltip mx-1 mobile-hidden">
+                        <div class="flex items-center">
+                            <img src="https://m.media-amazon.com/images/G/31/x-locale/customer-service/chat/india._CB424651257_.png"
+                                alt="India" class="h-4 mr-1">
+                            <span class="text-sm">EN</span>
+                            <i class="fas fa-caret-down ml-1"></i>
+                        </div>
+                        <div class="nav-tooltip-content hidden">
+                            <h4 class="font-bold mb-2">Change Language</h4>
+                            <p>You are shopping on Amazon.in</p>
+                        </div>
+                    </div>
+
+                    <div class="nav-tooltip mx-1 mobile-hidden">
+                        <div class="text-xs" id="userGreeting">Hello, Sign in</div>
+                        <div class="text-sm font-bold flex items-center">
+                            Account & Lists
+                            <i class="fas fa-caret-down ml-1"></i>
+                        </div>
+                        <div class="nav-tooltip-content hidden">
+                            <div class="mb-4" id="authButtons">
+                                <button onclick="showLoginModal()"
+                                    class="w-full bg-yellow-400 hover:bg-yellow-500 text-black py-1 px-3 rounded text-sm font-medium">
+                                    Sign in
+                                </button>
+                            </div>
+                            <div>
+                                <p class="text-sm"><span class="font-bold">New customer?</span> <a href="#"
+                                        class="text-blue-500 hover:underline" onclick="showSignupModal()">Start here.</a></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mx-1 mobile-hidden">
+                        <div class="text-xs">Returns</div>
+                        <div class="text-sm font-bold">& Orders</div>
+                    </div>
+
+                    <div class="flex items-center mx-1 nav-tooltip">
+                        <div class="relative">
+                            <i class="fas fa-shopping-cart text-2xl"></i>
+                            <span
+                                class="absolute -top-2 -right-2 bg-yellow-400 text-black text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">0</span>
+                        </div>
+                        <span class="ml-1 text-sm font-bold mobile-hidden">Cart</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Secondary Navigation -->
+    <div class="amazon-nav-secondary text-white text-sm">
+        <div class="container mx-auto px-4">
+            <div class="flex items-center overflow-x-auto py-2">
+                <div class="flex items-center mr-4 whitespace-nowrap">
+                    <i class="fas fa-bars mr-2"></i>
+                    <span>All</span>
+                </div>
+                <div class="flex space-x-4 whitespace-nowrap">
+                    <a href="#" class="hover:underline">Today's Deals</a>
+                    <a href="#" class="hover:underline">Customer Service</a>
+                    <a href="#" class="hover:underline">Registry</a>
+                    <a href="#" class="hover:underline">Gift Cards</a>
+                    <a href="#" class="hover:underline">Sell</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hero Banner Carousel -->
+    <div class="relative">
+        <div class="hero-gradient w-full absolute top-0 left-0 z-10"></div>
+        <div class="carousel-container">
+            <div class="carousel" id="heroCarousel">
+                <div class="carousel-item">
+                    <img src="https://m.media-amazon.com/images/I/61lwJy4B8PL._SX3000_.jpg" alt="Amazon Hero"
+                        class="w-full h-auto">
+                </div>
+                <div class="carousel-item">
+                    <img src="./images/PC_Hero_2x-toys_1._CB582765723_.jpg" alt="Amazon Hero" class="w-full h-auto">
+                </div>
+                <div class="carousel-item">
+                    <img src="https://m.media-amazon.com/images/I/71tIrZqybrL._SX3000_.jpg" alt="Amazon Hero"
+                        class="w-full h-auto">
+                </div>
+            </div>
+            <button class="carousel-btn prev" onclick="prevSlide()">
+                <i class="fas fa-chevron-left text-gray-800"></i>
+            </button>
+            <button class="carousel-btn next" onclick="nextSlide()">
+                <i class="fas fa-chevron-right text-gray-800"></i>
+            </button>
+            <div class="carousel-indicators" id="carouselIndicators">
+                <div class="carousel-indicator active" onclick="goToSlide(0)"></div>
+                <div class="carousel-indicator" onclick="goToSlide(1)"></div>
+                <div class="carousel-indicator" onclick="goToSlide(2)"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Product Grid -->
+    <div class="container mx-auto px-4 py-4 -mt-32 relative z-20">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            <!-- Product Box 1 -->
+            <div class="bg-white p-4">
+                <h3 class="font-bold text-lg mb-2">Upgrade your home | Amazon Brands & more</h3>
+                <div class="grid grid-cols-2 gap-2">
+                    <div class="bg-white p-2 relative">
+                        <img src="./images/Home_decor_1._SY116_CB555624324_.jpg" alt="Product"
+                            class="w-full h-32 object-contain">
+                        <p class="text-xs mt-1">Starting from ₹199</p>
+                    </div>
+                    <div class="bg-white p-2 relative">
+                        <img src="./images/Home_furnishings_2._SY116_CB555624324_.jpg" alt="Product"
+                            class="w-full h-32 object-contain">
+                        <p class="text-xs mt-1">Starting from ₹299</p>
+                    </div>
+                </div>
+                <a href="#" class="text-blue-500 hover:underline text-sm">See more</a>
+            </div>
+
+            <!-- Product Box 2 -->
+            <div class="bg-white p-4">
+                <h3 class="font-bold text-lg mb-2">Beauty picks</h3>
+                <div class="flex justify-center">
+                    <img src="./images/SY232_CB541414575_.jpg" alt="Beauty Product" class="h-48 object-contain">
+                </div>
+                <a href="#" class="text-blue-500 hover:underline text-sm">Shop now</a>
+            </div>
+
+            <!-- Product Box 3 -->
+            <div class="bg-white p-4">
+                <h3 class="font-bold text-lg mb-2">Electronics</h3>
+                <div class="flex justify-center">
+                    <img src="./images/refri_.jpg" alt="Electronics" class="h-48 object-contain">
+                </div>
+                <a href="#" class="text-blue-500 hover:underline text-sm">Shop now</a>
+            </div>
+
+            <!-- Product Box 4 -->
+            <div class="bg-white p-4">
+                <h3 class="font-bold text-lg mb-2">New arrivals in Toys</h3>
+                <div class="grid grid-cols-2 gap-2">
+                    <div class="bg-white p-2 relative">
+                        <img src="./images/toy2_.jpg" alt="Product" class="w-full h-32 object-contain">
+                        <p class="text-xs mt-1">Starting from ₹599</p>
+                    </div>
+                    <div class="bg-white p-2 relative">
+                        <img src="./images/SY232_CB541414575_.jpg" alt="Product" class="w-full h-32 object-contain">
+                        <p class="text-xs mt-1">Starting from ₹299</p>
+                    </div>
+                </div>
+                <a href="#" class="text-blue-500 hover:underline text-sm">See more</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Additional Product Rows -->
+    <div class="container mx-auto px-4 py-4">
+        <div class="bg-white p-4 mb-4">
+            <h2 class="font-bold text-xl mb-4">Today's Deals</h2>
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7 gap-2">
+                <!-- Deal Item 1 -->
+                <div class="border border-gray-200 p-2 relative">
+                    <div class="deal-badge">10% off</div>
+                    <img src="./images/Appliances-QC-PC-372x232----B08RDL6H79._SY232_CB667322346_.jpg" alt="Deal"
+                        class="w-full h-24 object-contain mx-auto">
+                    <p class="text-xs text-red-600 font-bold mt-2">Deal of the Day</p>
+                    <p class="text-xs">₹30,099 <span class="text-gray-500 line-through">₹35,999</span></p>
+                </div>
+
+                <!-- Deal Item 2 -->
+                <div class="border border-gray-200 p-2 relative">
+                    <div class="deal-badge">65% off</div>
+                    <img src="https://m.media-amazon.com/images/I/61YVqHdFRxL._AC_SY200_.jpg" alt="Deal"
+                        class="w-full h-24 object-contain mx-auto">
+                    <p class="text-xs text-red-600 font-bold mt-2">Deal of the Day</p>
+                    <p class="text-xs">₹499 <span class="text-gray-500 line-through">₹1,399</span></p>
+                </div>
+
+                <!-- Deal Item 3 -->
+                <div class="border border-gray-200 p-2 relative">
+                    <div class="deal-badge">60% off</div>
+                    <img src="./images/PC_Hero_2x-toys_1._CB582765723_.jpg" alt="Deal"
+                        class="w-full h-24 object-contain mx-auto">
+                    <p class="text-xs text-red-600 font-bold mt-2">Deal of the Day</p>
+                    <p class="text-xs">₹799 <span class="text-gray-500 line-through">₹1,999</span></p>
+                </div>
+
+                <!-- Deal Item 4 -->
+                <div class="border border-gray-200 p-2 relative">
+                    <div class="deal-badge">55% off</div>
+                    <img src="./images/Redmi._SY232_CB792406754_.jpg" alt="Deal"
+                        class="w-full h-24 object-contain mx-auto">
+                    <p class="text-xs text-red-600 font-bold mt-2">Deal of the Day</p>
+                    <p class="text-xs">₹20,999 <span class="text-gray-500 line-through">₹25,999</span></p>
+                </div>
+
+                <!-- Deal Item 5 -->
+                <div class="border border-gray-200 p-2 relative">
+                    <div class="deal-badge">50% off</div>
+                    <img src="./images/Tools__hi-res_v3._SY232_CB549134196_.jpg" alt="Deal"
+                        class="w-full h-24 object-contain mx-auto">
+                    <p class="text-xs text-red-600 font-bold mt-2">Deal of the Day</p>
+                    <p class="text-xs">₹599 <span class="text-gray-500 line-through">₹1,199</span></p>
+                </div>
+
+                <!-- Deal Item 6 -->
+                <div class="border border-gray-200 p-2 relative">
+                    <div class="deal-badge">45% off</div>
+                    <img src="./images/Vega_helmet_372x232._SY232_CB405083904_.jpg" alt="Deal"
+                        class="w-full h-24 object-contain mx-auto">
+                    <p class="text-xs text-red-600 font-bold mt-2">Deal of the Day</p>
+                    <p class="text-xs">₹699 <span class="text-gray-500 line-through">₹1,299</span></p>
+                </div>
+
+                <!-- Deal Item 7 -->
+                <div class="border border-gray-200 p-2 relative">
+                    <div class="deal-badge">40% off</div>
+                    <img src="https://m.media-amazon.com/images/I/61lwJy4B8PL._AC_SY200_.jpg" alt="Deal"
+                        class="w-full h-24 object-contain mx-auto">
+                    <p class="text-xs text-red-600 font-bold mt-2">Deal of the Day</p>
+                    <p class="text-xs">₹999 <span class="text-gray-500 line-through">₹1,699</span></p>
+                </div>
+            </div>
+            <div class="text-right mt-2">
+                <a href="#" class="text-blue-500 hover:underline text-sm">See all deals</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Amazon Prime -->
+    <div class="bg-white p-4 mb-4 rounded shadow-sm">
+        <div class="flex items-center mb-4">
+            <img src="https://m.media-amazon.com/images/G/31/prime/NavFlyout/TryPrime/2018/Apr/IN-Prime-PIN-TryPrime-MultiBen-Apr18-400x400._CB442254244_.jpg"
+                alt="Prime" class="h-10 mr-2">
+            <h2 class="font-bold text-xl">Prime Members: Get unlimited free delivery</h2>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div class="prime-item">
+                <img src="https://m.media-amazon.com/images/I/61DUO0NqyyL._SL1500_.jpg" alt="Prime Product"
+                    class="w-full h-48 object-contain">
+                <p class="text-sm mt-2">Prime members get 10% off</p>
+            </div>
+        </div>
+        <div class="text-right mt-4">
+            <button class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-1 rounded text-sm">
+                Join Prime Now
+            </button>
+        </div>
+    </div>
+    
+    <!-- Best Sellers -->
+   <div class="bg-white p-4 mb-4 rounded shadow-sm">
+    <h2 class="font-bold text-xl mb-4">Best Sellers in Electronics</h2>
+    <div class="flex flex-wrap gap-4">
+        <div class="product-card flex-1 min-w-[150px] max-w-[200px]">
+            <div class="relative">
+                <span class="best-seller-badge">#1</span>
+                <img src="https://m.media-amazon.com/images/I/71TPda7cwUL._AC_UL320_.jpg" alt="Product"
+                    class="w-full h-40 object-contain">
+            </div>
+            <p class="text-sm mt-2 line-clamp-2">boAt Airdopes 141 Bluetooth Truly Wireless in Ear Earbuds with 42H Playtime</p>
+            <div class="flex items-center mt-1">
+                <div class="text-yellow-400 text-xs">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                </div>
+                <span class="text-xs text-gray-500 ml-1">(12,345)</span>
+            </div>
+            <p class="text-sm font-bold mt-1">₹1,299</p>
+        </div>
+        
+        <div class="product-card flex-1 min-w-[150px] max-w-[200px]">
+            <div class="relative">
+                <span class="best-seller-badge">#2</span>
+                <img src="https://m.media-amazon.com/images/I/61lwJy4B8PL._AC_UL320_.jpg" alt="Product"
+                    class="w-full h-40 object-contain">
+            </div>
+            <p class="text-sm mt-2 line-clamp-2">Redmi Note 11 (Space Black, 4GB RAM, 64GB Storage)</p>
+            <div class="flex items-center mt-1">
+                <div class="text-yellow-400 text-xs">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                </div>
+                <span class="text-xs text-gray-500 ml-1">(12,345)</span>
+            </div>
+            <p class="text-sm font-bold mt-1">₹1,299</p>
+        </div>
+        
+        <div class="product-card flex-1 min-w-[150px] max-w-[200px]">
+            <div class="relative">
+                <span class="best-seller-badge">#3</span>
+                <img src="https://m.media-amazon.com/images/I/61BGE6iu4AL._AC_UL320_.jpg" alt="Product"
+                    class="w-full h-40 object-contain">
+            </div>
+            <p class="text-sm mt-2 line-clamp-2">OnePlus Nord CE 2 Lite 5G (Blue Tide, 6GB RAM, 128GB Storage)</p>
+            <div class="flex items-center mt-1">
+                <div class="text-yellow-400 text-xs">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="far fa-star"></i>
+                </div>
+                <span class="text-xs text-gray-500 ml-1">(8,765)</span>
+            </div>
+            <p class="text-sm font-bold mt-1">₹18,999</p>
+        </div>
+        
+        <div class="product-card flex-1 min-w-[150px] max-w-[200px]">
+            <div class="relative">
+                <span class="best-seller-badge">#4</span>
+                <img src="https://m.media-amazon.com/images/I/61BGE6iu4AL._AC_UL320_.jpg" alt="Product"
+                    class="w-full h-40 object-contain">
+            </div>
+            <p class="text-sm mt-2 line-clamp-2">Samsung Galaxy M33 5G (Mystique Green, 6GB, 128GB Storage)</p>
+            <div class="flex items-center mt-1">
+                <div class="text-yellow-400 text-xs">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <span class="text-xs text-gray-500 ml-1">(15,432)</span>
+            </div>
+            <p class="text-sm font-bold mt-1">₹19,999</p>
+        </div>
+        
+        <div class="product-card flex-1 min-w-[150px] max-w-[200px]">
+            <div class="relative">
+                <span class="best-seller-badge">#5</span>
+                <img src="https://m.media-amazon.com/images/I/71i2XhHU3pL._AC_UL320_.jpg" alt="Product"
+                    class="w-full h-40 object-contain">
+            </div>
+            <p class="text-sm mt-2 line-clamp-2">Noise ColorFit Pro 3 Alpha Smart Watch with 1.69" Display</p>
+            <div class="flex items-center mt-1">
+                <div class="text-yellow-400 text-xs">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                </div>
+                <span class="text-xs text-gray-500 ml-1">(23,456)</span>
+            </div>
+            <p class="text-sm font-bold mt-1">₹3,999</p>
+        </div>
+        
+        <div class="product-card flex-1 min-w-[150px] max-w-[200px]">
+            <div class="relative">
+                <span class="best-seller-badge">#6</span>
+                <img src="https://m.media-amazon.com/images/I/61L1ItFgFHL._AC_UL320_.jpg" alt="Product"
+                    class="w-full h-40 object-contain">
+            </div>
+            <p class="text-sm mt-2 line-clamp-2">pTron Bassbuds Duo Wireless Earbuds with 20 Hours Playback</p>
+            <div class="flex items-center mt-1">
+                <div class="text-yellow-400 text-xs">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="far fa-star"></i>
+                </div>
+                <span class="text-xs text-gray-500 ml-1">(9,876)</span>
+            </div>
+            <p class="text-sm font-bold mt-1">₹999</p>
+        </div>
+    </div>
+    <div class="text-right mt-4">
+        <a href="#" class="text-blue-500 hover:underline text-sm">See more best sellers</a>
+    </div>
+</div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white mt-8">
+        <div class="container mx-auto px-4 py-8">
+            <div class="text-center mb-6">
+                <a href="#" class="text-sm hover:underline">Back to top</a>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <h4 class="font-bold mb-4">Get to Know Us</h4>
+                    <ul class="space-y-2 text-sm text-gray-300">
+                        <li><a href="#" class="hover:underline">About Us</a></li>
+                        <li><a href="#" class="hover:underline">Careers</a></li>
+                        <li><a href="#" class="hover:underline">Press Releases</a></li>
+                        <li><a href="#" class="hover:underline">Amazon Science</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-bold mb-4">Connect with Us</h4>
+                    <ul class="space-y-2 text-sm text-gray-300">
+                        <li><a href="#" class="hover:underline">Facebook</a></li>
+                        <li><a href="#" class="hover:underline">Twitter</a></li>
+                        <li><a href="#" class="hover:underline">Instagram</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-bold mb-4">Make Money with Us</h4>
+                    <ul class="space-y-2 text-sm text-gray-300">
+                        <li><a href="#" class="hover:underline">Sell on Amazon</a></li>
+                        <li><a href="#" class="hover:underline">Sell under Amazon Accelerator</a></li>
+                        <li><a href="#" class="hover:underline">Protect and Build Your Brand</a></li>
+                        <li><a href="#" class="hover:underline">Amazon Global Selling</a></li>
+                        <li><a href="#" class="hover:underline">Become an Affiliate</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-bold mb-4">Let Us Help You</h4>
+                    <ul class="space-y-2 text-sm text-gray-300">
+                        <li><a href="#" class="hover:underline">COVID-19 and Amazon</a></li>
+                        <li><a href="#" class="hover:underline">Your Account</a></li>
+                        <li><a href="#" class="hover:underline">Returns Centre</a></li>
+                        <li><a href="#" class="hover:underline">100% Purchase Protection</a></li>
+                        <li><a href="#" class="hover:underline">Amazon App Download</a></li>
+                        <li><a href="#" class="hover:underline">Help</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-900 pt-8">
+                <div class="flex justify-center mb-9">
+                    <img src="https://www.amazon.in/favicon.ico" alt="Amazon Logo" class="h-8">
+                </div>
+                <div class="flex flex-wrap justify-center gap-4 text-xs text-gray-400 mb-4">
+                    <a href="#" class="hover:underline">Australia</a>
+                    <a href="#" class="hover:underline">Brazil</a>
+                    <a href="#" class="hover:underline">Canada</a>
+                    <a href="#" class="hover:underline">China</a>
+                    <a href="#" class="hover:underline">France</a>
+                    <a href="#" class="hover:underline">Germany</a>
+                    <a href="#" class="hover:underline">Italy</a>
+                    <a href="#" class="hover:underline">Japan</a>
+                    <a href="#" class="hover:underline">Mexico</a>
+                    <a href="#" class="hover:underline">Netherlands</a>
+                    <a href="#" class="hover:underline">Poland</a>
+                    <a href="#" class="hover:underline">Singapore</a>
+                    <a href="#" class="hover:underline">Spain</a>
+                    <a href="#" class="hover:underline">Turkey</a>
+                    <a href="#" class="hover:underline">United Arab Emirates</a>
+                    <a href="#" class="hover:underline">United Kingdom</a>
+                    <a href="#" class="hover:underline">United States</a>
+                </div>
+                <div class="text-center text-xs text-gray-400">
+                    <p>© 2025, Amazon.com</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Login Modal -->
+    <div id="loginModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center">
+        <div class="bg-white rounded-lg w-full max-w-md">
+            <div class="p-6">
+                <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-2xl font-bold">Sign in</h2>
+                    <button onclick="closeLoginModal()" class="text-gray-500 hover:text-gray-700">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                
+                <div class="mb-4">
+                    <label class="block text-sm font-medium mb-1">Email or mobile phone number</label>
+                    <input type="text" id="loginEmail" class="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-yellow-400">
+                </div>
+                
+                <div class="mb-6">
+                    <label class="block text-sm font-medium mb-1">Password</label>
+                    <input type="password" id="loginPassword" class="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-yellow-400">
+                    <a href="#" class="text-xs text-blue-500 hover:underline">Forgot your password?</a>
+                </div>
+                
+                <button onclick="login()" class="w-full bg-yellow-400 hover:bg-yellow-500 text-black py-2 px-4 rounded text-sm font-medium mb-4">
+                    Continue
+                </button>
+                
+                <div class="flex items-center mb-4">
+                    <div class="flex-1 border-t border-gray-300"></div>
+                    <span class="px-2 text-xs text-gray-500">New to Amazon?</span>
+                    <div class="flex-1 border-t border-gray-300"></div>
+                </div>
+                
+                <button onclick="showSignupModal()" class="w-full bg-gray-200 hover:bg-gray-300 text-black py-2 px-4 rounded text-sm font-medium">
+                    Create your Amazon account
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Signup Modal -->
+    <div id="signupModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center">
+        <div class="bg-white rounded-lg w-full max-w-md">
+            <div class="p-6">
+                <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-2xl font-bold">Create account</h2>
+                    <button onclick="closeSignupModal()" class="text-gray-500 hover:text-gray-700">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                
+                <div class="mb-2">
+                    <label class="block text-sm font-medium mb-1">Your name</label>
+                    <input type="text" id="signupName" class="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-yellow-400">
+                </div>
+                
+                <div class="mb-2">
+                    <label class="block text-sm font-medium mb-1">Email</label>
+                    <input type="email" id="signupEmail" class="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-yellow-400">
+                </div>
+                
+                <div class="mb-2">
+                    <label class="block text-sm font-medium mb-1">Mobile number</label>
+                    <input type="tel" id="signupMobile" class="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-yellow-400">
+                </div>
+                
+                <div class="mb-2">
+                    <label class="block text-sm font-medium mb-1">Password</label>
+                    <input type="password" id="signupPassword" placeholder="At least 6 characters" class="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-yellow-400">
+                    <p class="text-xs text-gray-500 mt-1">Passwords must be at least 6 characters.</p>
+                </div>
+                
+                <div class="mb-2">
+                    <label class="block text-sm font-medium mb-1">Re-enter password</label>
+                    <input type="password" id="signupPasswordConfirm" class="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-yellow-400">
+                </div>
+                
+                <button onclick="signup()" class="w-full bg-yellow-200 hover:bg-yellow-500 text-black py-2 px-4 rounded text-sm font-medium mb-4">
+                    Continue
+                </button>
+                
+                <p class="text-xs text-gray-500 mb-2">
+                    By continuing, you agree to Amazon's <a href="#" class="text-blue-500 hover:underline">Conditions of Use</a> and <a href="#" class="text-blue-500 hover:underline">Privacy Notice</a>.
+                </p>
+                
+                <div class="flex items-center mb-2">
+                    <div class="flex-1 border-t border-gray-300"></div>
+                    <span class="px-2 text-xs text-gray-500">Already have an account?</span>
+                    <div class="flex-1 border-t border-gray-300"></div>
+                </div>
+                
+                <button onclick="showLoginModal()" class="w-full bg-gray-200 hover:bg-gray-300 text-black py-2 px-4 rounded text-sm font-medium">
+                    Sign in
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
