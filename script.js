@@ -1,5 +1,3 @@
-
-// Carousel functionality
 let currentSlide = 0;
 const slides = document.querySelectorAll('.carousel-item');
 const indicators = document.querySelectorAll('.carousel-indicator');
@@ -9,7 +7,6 @@ function updateCarousel() {
     const carousel = document.getElementById('heroCarousel');
     carousel.style.transform = `translateX(-${currentSlide * 100}%)`;
 
-    // Update indicators
     indicators.forEach((indicator, index) => {
         if (index === currentSlide) {
             indicator.classList.add('active');
@@ -34,10 +31,10 @@ function goToSlide(index) {
     updateCarousel();
 }
 
-// Auto-advance slides every 5 seconds
+
 let slideInterval = setInterval(nextSlide, 5000);
 
-// Pause auto-advance when hovering over carousel
+
 const carouselContainer = document.querySelector('.carousel-container');
 if (carouselContainer) {
     carouselContainer.addEventListener('mouseenter', () => {
@@ -49,12 +46,12 @@ if (carouselContainer) {
     });
 }
 
-// User authentication functions
 let users = JSON.parse(localStorage.getItem('amazonCloneUsers')) || [];
 
 function showLoginModal() {
     document.getElementById('loginModal').classList.remove('hidden');
     document.getElementById('signupModal').classList.add('hidden');
+    closeMobileMenu();
 }
 
 function closeLoginModal() {
@@ -64,6 +61,7 @@ function closeLoginModal() {
 function showSignupModal() {
     document.getElementById('signupModal').classList.remove('hidden');
     document.getElementById('loginModal').classList.add('hidden');
+    closeMobileMenu();
 }
 
 function closeSignupModal() {
@@ -142,12 +140,12 @@ function logout() {
 
 function updateUserUI(name = null) {
     const userGreeting = document.getElementById('userGreeting');
-    const authButtons = document.getElementById('authButtons');
+    const mobileUserGreeting = document.getElementById('mobileUserGreeting');
     
     if (name) {
         userGreeting.textContent = `Hello, ${name}`;
+        if (mobileUserGreeting) mobileUserGreeting.textContent = `Hello, ${name}`;
         
-        // Update tooltip content for logged in user
         const tooltipContent = document.querySelector('.nav-tooltip .nav-tooltip-content');
         if (tooltipContent) {
             tooltipContent.innerHTML = `
@@ -168,8 +166,8 @@ function updateUserUI(name = null) {
         }
     } else {
         userGreeting.textContent = 'Hello, Sign in';
-        
-        // Reset to original login tooltip
+        if (mobileUserGreeting) mobileUserGreeting.textContent = 'Hello, Sign in';
+    
         const tooltipContent = document.querySelector('.nav-tooltip .nav-tooltip-content');
         if (tooltipContent) {
             tooltipContent.innerHTML = `
@@ -179,21 +177,51 @@ function updateUserUI(name = null) {
                     </button>
                 </div>
                 <div>
-                    <p class="text-sm"><span class="font-bold">New customer?</span> <a href="#" onclick="showSignupModal()" class="text-blue-500 hover:underline">Start here.</a></p>
+                    <p class="text-sm"><span class="font-bold">New customer?</span> <a href="#" class="text-blue-500 hover:underline" onclick="showSignupModal()">Start here.</a></p>
                 </div>
             `;
         }
     }
 }
 
-// Initialize the page
+// Mobile menu 
+function toggleMobileMenu() {
+    const mobileMenu = document.getElementById('mobileMenu');
+    mobileMenu.classList.toggle('hidden');
+    mobileMenu.classList.toggle('show');
+}
+
+function closeMobileMenu() {
+    const mobileMenu = document.getElementById('mobileMenu');
+    mobileMenu.classList.add('hidden');
+    mobileMenu.classList.remove('show');
+}
+
+function initMobileMenu() {
+    const mobileMenuButton = document.getElementById('mobileMenuButton');
+    if (mobileMenuButton) {
+        mobileMenuButton.addEventListener('click', toggleMobileMenu);
+    }
+    
+    // Close mobile menu 
+    document.addEventListener('click', (e) => {
+        const mobileMenu = document.getElementById('mobileMenu');
+        const mobileMenuButton = document.getElementById('mobileMenuButton');
+        if (mobileMenu && !mobileMenu.contains(e.target) && 
+            e.target !== mobileMenuButton && 
+            !mobileMenuButton.contains(e.target)) {
+            closeMobileMenu();
+        }
+    });
+}
+
+
 function initializePage() {
     const currentUser = JSON.parse(localStorage.getItem('amazonCloneCurrentUser'));
     if (currentUser) {
         updateUserUI(currentUser.name);
     }
-    
-    // Make the "Account & Lists" button open login modal when not logged in
+
     const accountTooltip = document.querySelector('.nav-tooltip');
     if (accountTooltip) {
         accountTooltip.addEventListener('click', function(e) {
@@ -245,7 +273,9 @@ function initializePage() {
         const index = parseInt(button.getAttribute('onclick').match(/\d+/)[0]);
         button.addEventListener('click', () => goToSlide(index));
     });
+
+  
+    initMobileMenu();
 }
 
-// Initialize when DOM is loaded
-document.addEventListener('DOMContentLoaded', initializePage);
+document.addEventListener('DOMContentLoaded', initializePage);  
