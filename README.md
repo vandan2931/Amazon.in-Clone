@@ -79,6 +79,6 @@ MIT Licensed - See [LICENSE](LICENSE) for details.
 
 ---
 
-🛒 **Developed by** [Your Name](https://github.com/vandan2931)  
+🛒 **Developed by** [VANDAN SHAH](https://github.com/vandan2931)  
 🔗 **Inspired by** Amazon.in's UI/UX
 ```
