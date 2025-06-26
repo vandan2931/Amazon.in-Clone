@@ -1,10 +1,12 @@
+Here's the corrected version of your README.md with proper formatting and fixes:
 
+```markdown
 # Amazon Clone - E-commerce Website 🛒
 
 A responsive Amazon.in clone with core e-commerce functionality built with pure frontend technologies.
 
 ## 🌐 Live Demo
-[View Live Demo](https://vandan2931.github.io/Amazon.in-Clone/amazon.html) 
+[View Live Demo](https://vandan2931.github.io/Amazon.in-Clone/amazon.html)
 
 ## ✨ Key Features
 
@@ -35,47 +37,44 @@ A responsive Amazon.in clone with core e-commerce functionality built with pure 
 |------------|-------|
 | **HTML5** | Semantic page structure |
 | **CSS3** | Custom styling + animations |
-| **Tailwind CSS** | Utility-first styling framework |
 | **JavaScript (ES6)** | Dynamic functionality |
 | **Font Awesome** | Icon system |
 | **localStorage** | Client-side data persistence |
 
 ## 🖥️ Project Structure
 ```
-amazon-clone/
-├── index.html          # Main entry point
+Amazon.in-Clone/
+├── amazon.html         # Main page
 ├── assets/
 │   ├── css/            # Stylesheets
-│   │   ├── styles.css
-│   ├── js/             # JavaScript modules
-│   │   ├── script.js
+│   │   └── styles.css
+│   ├── js/             # JavaScript
+│   │   └── script.js
 │   └── images/         # Product/UI images
 ├── README.md           # Documentation
 └── LICENSE             # MIT License
 ```
 
 ## 🚀 Quick Start
+1. Visit the live demo:  
+   [https://vandan2931.github.io/Amazon.in-Clone/amazon.html](https://vandan2931.github.io/Amazon.in-Clone/amazon.html)
+
+OR
+
 1. Clone the repository:
 ```bash
-https://vandan2931.github.io/Amazon.in-Clone/amazon.html
+git clone https://github.com/vandan2931/Amazon.in-Clone.git
 ```
-2. Open `index.html` in your browser
-
-## 🌍 Deployment
-Ready for:
-- GitHub Pages
-- Netlify
-- Vercel
-- Any static hosting service
+2. Open `amazon.html` in your browser
 
 ## 📝 Notes
 - Frontend-only implementation
 - Uses localStorage for mock authentication
 - Product data is hardcoded for demonstration
-- Not affiliated with Amazon - educational purpose only
+- Educational purpose only (not affiliated with Amazon)
 
 ## 📜 License
-MIT Licensed - See [LICENSE](LICENSE) for details.
+MIT Licensed
 
 ---
 
