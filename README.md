@@ -1,6 +1,4 @@
-Here's the corrected version of your README.md with proper formatting and fixes:
 
-```markdown
 # Amazon Clone - E-commerce Website 🛒
 
 A responsive Amazon.in clone with core e-commerce functionality built with pure frontend technologies.
